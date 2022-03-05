@@ -35,7 +35,37 @@ class AuthController extends Controller
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
         $user = auth()->user();
         $data["user"] = $user;
-    
+
         return response()->json(['data' => $data, 'token' => $accessToken,   "ok" => true], 200);
+    }
+    public function checkPin($id, Request $request)
+    {
+        $pinData =    $request->validate([
+            'pin' => 'required'
+        ]);
+        $user =  User::where(["id" => $id])->first();
+        if (!$user) {
+            return response()->json([
+                "message" => "Invalid Pin"
+            ], 400);
+        }
+
+        if (!Hash::check($pinData["pin"], $user->pin)) {
+            return response()->json([
+                "message" => "Invalid Pin"
+            ], 400);
+        }
+
+        return response()->json([
+            "message" => "Pin Matched"
+        ], 400);
+    }
+
+    public function getUserWithRestaurent(Request $request) {
+        // @@@@@@@@@@ should connect with restaurent
+        $user = auth()->user();
+        return response()->json($user,200);
+
+
     }
 }

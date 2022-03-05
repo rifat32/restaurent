@@ -18,5 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::post('/auth', [AuthController::class, "login"]);
 Route::post('/auth/register', [AuthController::class, "register"]);
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@  Protected Routes      @@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Route::middleware(['auth:api'])->group(function () {
+
+    // #################
+// Auth Routes
+   // #################
+    Route::post('/auth/checkpin/{id}', [AuthController::class, "checkPin"]);
+    Route::get('/auth', [AuthController::class, "getUserWithRestaurent"]);
+
+});
