@@ -23,9 +23,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-// Auth Route
+// Auth Route login user
 Route::post('/auth', [AuthController::class, "login"]);
-// Route::post('/auth/register', [AuthController::class, "register"]);
+ Route::post('/auth/register', [AuthController::class, "register"]);
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@  Protected Routes      @@@@@@@@@@@@@@@@@
@@ -39,12 +39,29 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/auth', [AuthController::class, "getUserWithRestaurent"]);
 // #################
 // Owner Routes
-// Authorization must be hide for some routes
+// Authorization may be hide for some routes I do not know
 // #################
 Route::post('/owner', [OwnerController::class, "createUser"]);
 Route::post('/owner/user/registration', [OwnerController::class, "createUser2"]);
 // guest user
 Route::post('/owner/guestuserregister', [OwnerController::class, "createGuestUser"]);
+// end of guest user
 Route::post('/owner/staffregister/{restaurantId}', [OwnerController::class, "createStaffUser"]);
+
+Route::post('/owner/pin/{ownerId}', [OwnerController::class, "updatePin"]);
+
+Route::get('/owner/{ownerId}', [OwnerController::class, "getOwnerById"]);
+Route::get('/owner/getAllowner/withourrestaurant', [OwnerController::class, "getOwnerNotHaveRestaurent"]);
+Route::get('/owner/loaduser/bynumber/{phoneNumber}', [OwnerController::class, "getOwnerByPhoneNumber"]);
+
+Route::patch('/owner/updateuser/{userId}', [OwnerController::class, "updateUser"]);
+Route::patch('/owner/profileimage/{userId}', [OwnerController::class, "updateImage"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
+Route::get('/owner/', [OwnerController::class, "getOwner"]);
 
 });

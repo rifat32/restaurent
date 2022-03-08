@@ -23,9 +23,12 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'name',
+        'first_Name',
+        'last_Name',
         'email',
         'password',
+        'phone',
+        'type'
     ];
 
     /**
@@ -37,6 +40,9 @@ class User extends Authenticatable
         'pin',
         'password',
         'remember_token',
+        'resetPasswordToken',
+        'resetPasswordExpires'
+
     ];
 
     /**
