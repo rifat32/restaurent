@@ -191,7 +191,7 @@ class OwnerController extends Controller
 
         $request->logo->move(public_path('img/user'), $imageName);
 
-        $imageName = "img/user" . $imageName;
+        $imageName = "img/user/" . $imageName;
 
         $data["user"] =    tap(User::where(["id" => $userId]))->update([
             "image" => $imageName
@@ -213,15 +213,6 @@ class OwnerController extends Controller
 
 
 
-    public function getOwner2(Request $request) {
-
-    }
-    public function getOwner3(Request $request) {
-
-    }
-    public function getOwner4(Request $request) {
-
-    }
 
 
 

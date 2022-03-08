@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -56,12 +57,25 @@ Route::get('/owner/loaduser/bynumber/{phoneNumber}', [OwnerController::class, "g
 
 Route::patch('/owner/updateuser/{userId}', [OwnerController::class, "updateUser"]);
 Route::patch('/owner/profileimage/{userId}', [OwnerController::class, "updateImage"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
-Route::get('/owner/', [OwnerController::class, "getOwner"]);
+
+// #################
+// Restaurent Routes
+
+// #################
+Route::post('/restaurant/{ownerId}', [RestaurantController::class, "storeRestaurent"]);
+Route::patch('/restaurant/uploadimage/{restaurentId}', [RestaurantController::class, "uploadRestaurentImage"]);
+
+Route::patch('/restaurant/UpdateResturantDetails/{restaurentId}', [RestaurantController::class, "UpdateResturantDetails"]);
+
+Route::patch('/restaurant/UpdateResturantDetails/byadmin/{restaurentId}', [RestaurantController::class, "UpdateResturantDetailsByAdmin"]);
+
+
+Route::get('/restaurant/{restaurantId}', [RestaurantController::class, "getrestaurantById"]);
+Route::get('/restaurant', [RestaurantController::class, "getAllRestaurants"]);
+Route::get('/restaurant/RestuarantbyID/{restaurantId}', [RestaurantController::class, "getrestaurantById"]);
+
+Route::get('/restaurant/Restuarant/tables/{restaurantId}', [RestaurantController::class, "getrestaurantTableByRestaurantId"]);
+
+
 
 });
