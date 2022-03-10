@@ -25,11 +25,10 @@ class RestaurantController extends Controller
         $validatedData["expiry_date"] = Date('y:m:d', strtotime('+15 days'));
 
 
-
         $restaurant =  Restaurant::create($validatedData);
 
-        $data["restaurant"] = $restaurant;
-        return response(["ok" => true, "message" => "Restaurent Created successfully", "data" => $data], 200);
+
+        return response( $restaurant, 200);
     }
 
 

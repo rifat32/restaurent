@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\VariationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,18 +65,22 @@ Route::patch('/owner/profileimage/{userId}', [OwnerController::class, "updateIma
 // #################
 Route::post('/restaurant/{ownerId}', [RestaurantController::class, "storeRestaurent"]);
 Route::patch('/restaurant/uploadimage/{restaurentId}', [RestaurantController::class, "uploadRestaurentImage"]);
-
 Route::patch('/restaurant/UpdateResturantDetails/{restaurentId}', [RestaurantController::class, "UpdateResturantDetails"]);
 
 Route::patch('/restaurant/UpdateResturantDetails/byadmin/{restaurentId}', [RestaurantController::class, "UpdateResturantDetailsByAdmin"]);
-
-
 Route::get('/restaurant/{restaurantId}', [RestaurantController::class, "getrestaurantById"]);
 Route::get('/restaurant', [RestaurantController::class, "getAllRestaurants"]);
 Route::get('/restaurant/RestuarantbyID/{restaurantId}', [RestaurantController::class, "getrestaurantById"]);
-
 Route::get('/restaurant/Restuarant/tables/{restaurantId}', [RestaurantController::class, "getrestaurantTableByRestaurantId"]);
 
+// #################
+// variation Routes
+
+// #################
+Route::post('/variation/variation_type', [VariationController::class, "storeVariationType"]);
+Route::post('/variation/variation_type/multiple/{restaurantId}', [VariationController::class, "storeMultipleVariationType"]);
+Route::patch('/variation/variation_type/multiple', [VariationController::class, "updateMultipleVariationType"]);
+Route::patch('/variation/variationtype', [VariationController::class, "updateVariationType"]);
 
 
 });
