@@ -82,5 +82,24 @@ Route::post('/variation/variation_type/multiple/{restaurantId}', [VariationContr
 Route::patch('/variation/variation_type/multiple', [VariationController::class, "updateMultipleVariationType"]);
 Route::patch('/variation/variationtype', [VariationController::class, "updateVariationType"]);
 
+Route::post('/variation/variationtype', [VariationController::class, "updateVariationType"]);
+Route::post('/variation', [VariationController::class, "storeVariation"]);
+
+Route::post('/variation/multiple/varations', [VariationController::class, "storeMultipleVariation"]);
+
+Route::patch('/variation', [VariationController::class, "updateVariation"]);
+
+Route::post('/variation/dish_variation', [VariationController::class, "storeDishVariation"]);
+
+Route::post('/variation/multiple/dish_variation/{dishId}', [VariationController::class, "storeMultipleDishVariation"]);
+
+Route::get('/variation/dish_variation/{dishId}', [VariationController::class, "getAllDishVariation"]);
+
+
+
+
+
+
+
 
 });

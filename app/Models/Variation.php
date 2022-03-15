@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VariationType extends Model
+class Variation extends Model
 {
-    protected $table = "variation_types";
     use HasFactory;
     protected $fillable = [
         "name",
         "description",
-        "restaurant_id",
+        "type_id",
+        "price",
     ];
-    public function variation() {
-        return $this->hasMany(Variation::class,"type_id","id");
-    }
 }

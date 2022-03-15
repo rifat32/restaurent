@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVariationTypesTable extends Migration
+class CreateDishVariationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateVariationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('variation_types', function (Blueprint $table) {
+        Schema::create('dish_variations', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("description");
-            $table->unsignedBigInteger("restaurant_id")->nullable();
+            $table->integer("no_of_varation_allowed");
+            $table->unsignedBigInteger("type_id")->nullable();
+            $table->unsignedBigInteger("dish_id")->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateVariationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variation_types');
+        Schema::dropIfExists('dish_variations');
     }
 }

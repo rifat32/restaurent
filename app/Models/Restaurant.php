@@ -22,7 +22,7 @@ class Restaurant extends Model
         return $this->hasOne(User::class,'id','OwnerID');
     }
     public function table() {
-        return $this->hasMany(RestaurantTable::class,'id','ResturantID');
+        return $this->hasMany(RestaurantTable::class,'id','restaurant_id');
     }
 
 }
