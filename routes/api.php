@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DailyViewsController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\VariationController;
@@ -101,9 +103,25 @@ Route::get('/variation/{restaurantId}/{dishId}', [VariationController::class, "g
 Route::get('/variation/type/count/{typeId}', [VariationController::class, "getAllVariationByType_Id"]);
 Route::delete('/variation/unlink/{typeId}/{dishId}', [VariationController::class, "deleteDishVariation"]);
 
+// #################
+// dailyviews Routes
 
+// #################
+Route::post('/dailyviews/{restaurantId}', [DailyViewsController::class, "store"]);
+Route::patch('/dailyviews/update/{restaurantId}', [DailyViewsController::class, "update"]);
 
+// #################
+// forggor password Routes
 
+// #################
 
+Route::patch('/forgetpassword/changepassword', [ForgotPasswordController::class, "changePassword"]);
 
 });
+// #################
+// forggor password Routes
+
+// #################
+
+Route::post('/forgetpassword', [ForgotPasswordController::class, "store"]);
+Route::patch('/forgetpassword/reset/{token}', [ForgotPasswordController::class, "changePasswordByToken"]);
