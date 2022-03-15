@@ -17,4 +17,8 @@ class VariationType extends Model
     public function variation() {
         return $this->hasMany(Variation::class,"type_id","id");
     }
+    public function dish_variation() {
+        return $this->hasMany(DishVariation::class,"type_id","id");
+    }
+
 }

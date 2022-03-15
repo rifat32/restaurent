@@ -131,5 +131,52 @@ class VariationController extends Controller
     }
 
 
+    public function updateDishVariation(Request $request)
+    {
+        $updatedDishVariation =    tap(DishVariation::where(["id" => $request->dish_id]))->update(
+            $request->only(
+                'no_of_varation_allowed',
+                'type_id'
+            )
+        )
+            // ->with("somthing")
+
+            ->first();
+        return response($updatedDishVariation, 200);
+    }
+
+    public function getAllVariationWithDish($restaurantId,$dishId, Request $request)
+    {
+        $dishAndVariations = VariationType::with("variation","dish_variation")->where([
+            "restaurant_id" => $restaurantId
+        ])
+        ->get();
+
+
+        return response($dishAndVariations, 201);
+    }
+    public function getAllVariationByType_Id($typeId, Request $request)
+    {
+        $dishAndVariations = Variation::with("variation_type","variation_type.dish_variation")->where([
+            "type_id" => $typeId
+        ])
+        ->get();
+
+
+        return response($dishAndVariations, 201);
+    }
+    public function deleteDishVariation($typeId, $dishId, Request $request)
+    {
+     $t =    DishVariation::where([
+            "type_id" => $typeId,
+            'dish_id' => $dishId
+            ,
+        ])
+        ->delete();
+
+
+
+        return response(["message" => "ok"], 201);
+    }
 
 }

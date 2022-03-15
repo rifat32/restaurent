@@ -14,4 +14,8 @@ class Variation extends Model
         "type_id",
         "price",
     ];
+
+    public function variation_type() {
+        return $this->belongsTo(VariationType::class,"type_id","id");
+    }
 }

@@ -95,7 +95,11 @@ Route::post('/variation/multiple/dish_variation/{dishId}', [VariationController:
 
 Route::get('/variation/dish_variation/{dishId}', [VariationController::class, "getAllDishVariation"]);
 
+Route::patch('/variation/dish_variation', [VariationController::class, "updateDishVariation"]);
+Route::get('/variation/{restaurantId}/{dishId}', [VariationController::class, "getAllVariationWithDish"]);
 
+Route::get('/variation/type/count/{typeId}', [VariationController::class, "getAllVariationByType_Id"]);
+Route::delete('/variation/unlink/{typeId}/{dishId}', [VariationController::class, "deleteDishVariation"]);
 
 
 
