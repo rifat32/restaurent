@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DailyViewsController;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\VariationController;
@@ -116,6 +119,49 @@ Route::patch('/dailyviews/update/{restaurantId}', [DailyViewsController::class, 
 // #################
 
 Route::patch('/forgetpassword/changepassword', [ForgotPasswordController::class, "changePassword"]);
+
+// #################
+// notification  Routes
+
+// #################
+
+Route::post('/notification/{recieverId}/{orderId}', [NotificationController::class, "storeNotification"]);
+Route::patch('/notification/{notificationId}', [NotificationController::class, "updateNotification"]);
+Route::get('/notification/{recieverId}', [NotificationController::class, "getNotification"]);
+Route::delete('/notification/{notificationId}', [NotificationController::class, "deleteNotification"]);
+
+// #################
+// menu  Routes
+
+// #################
+
+Route::post('/menu/{restaurantId}', [MenuController::class, "storeMenu"]);
+Route::patch('/menu/update/{MenuId}', [MenuController::class, "updateMenu"]);
+Route::get('/menu/{menuId}', [MenuController::class, "getMenuById"]);
+Route::get('/menu/AllbuId/{restaurantId}', [MenuController::class, "getMenuByRestaurantId"]);
+Route::post('/menu/multiple/{restaurantId}', [MenuController::class, "storeMultipleMenu"]);
+Route::patch('/menu/Edit/multiple', [MenuController::class, "updateMultipleMenu"]);
+Route::patch('/menu/Updatemenu', [MenuController::class, "updateMenu2"]);
+Route::delete('/menu/{menuId}', [MenuController::class, "deleteMenu"]);
+
+// #################
+// dish  Routes
+
+// #################
+
+Route::post('/dishes/{menuId}', [DishController::class, "storeDish"]);
+Route::patch('/dishes/UpdateDishesDetails/{dishId}', [DishController::class, "updateDish"]);
+Route::post('/dishes/uploadimage/{dishId}', [DishController::class, "updateDishImage"]);
+Route::get('/dishes/All/dishes/{restaurantId}', [DishController::class, "getAllDishes"]);
+Route::get('/dishes/{menuId}', [DishController::class, "getDisuBuMenuId"]);
+Route::get('/dishes/getdealsdishes/{dealId}', [DishController::class, "getDishByDealId"]);
+Route::get('/dishes/getusermenu/dealsdishes', [DishController::class, "getAllDishesWithDeals"]);
+Route::post('/dishes/multiple/{restaurantId}', [DishController::class, "storeMultipleDish"]);
+Route::post('/dishes/multiple/deal/{menuId}', [DishController::class, "storeMultipleDealDish"]);
+Route::patch('/dishes/Edit/multiple', [DishController::class, "updateMultipleDish"]);
+Route::patch('/dishes/Updatedish', [DishController::class, "updateDish2"]);
+Route::delete('/dishes/{dishId}', [DishController::class, "deleteDish"]);
+
 
 });
 // #################

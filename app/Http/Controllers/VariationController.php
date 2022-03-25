@@ -162,12 +162,11 @@ class VariationController extends Controller
         ])
         ->get();
 
-
         return response($dishAndVariations, 201);
     }
     public function deleteDishVariation($typeId, $dishId, Request $request)
     {
-     $t =    DishVariation::where([
+         DishVariation::where([
             "type_id" => $typeId,
             'dish_id' => $dishId
             ,
